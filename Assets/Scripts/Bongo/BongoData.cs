@@ -13,7 +13,19 @@ public class BongoData : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentView = ViewManager.Instance.GetView(currentTier);
-        spriteRenderer.color = currentView.CurrentColor;
         spriteRenderer.sprite = currentView.CurrentSprite;
+        ChangeColor(false);
+    }
+
+    public void ChangeColor(bool isActive)
+    {
+        if (isActive)
+        {
+            spriteRenderer.color = currentView.ActiveColor;
+        }
+        else
+        {
+            spriteRenderer.color = currentView.UnactiveColor;
+        }
     }
 }

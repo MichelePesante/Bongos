@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class BongoView : ScriptableObject
 {
-    public Color CurrentColor;
+    public Color ActiveColor;
+    public Color UnactiveColor;
     public Sprite CurrentSprite;
 }

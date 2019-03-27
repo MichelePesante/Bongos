@@ -11,7 +11,7 @@ public class BongoInput : MonoBehaviour
         myCollider2D = GetComponent<Collider2D>();
     }
 
-    public void CheckTouches()
+    public bool CheckTouches()
     {
         if (Input.touchCount > 0)
         {
@@ -22,10 +22,11 @@ public class BongoInput : MonoBehaviour
                     Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
                     if (myCollider2D.OverlapPoint(touchPos))
                     {
-                        print("Touch");
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
 }

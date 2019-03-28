@@ -5,14 +5,52 @@ using UnityEngine;
 
 public class BongoManager : MonoBehaviour
 {
-    List<BongoController> bongos = new List<BongoController>();
+    [SerializeField]
+    private float spawnRatio;
+    private Timer timer;
+    private List<BongoController> bongos = new List<BongoController>();
 
-    void Start()
+    private void Start()
     {
-        bongos = FindObjectsOfType<BongoController>().ToList();
+        Setup();
+
         foreach (BongoController bongo in bongos)
         {
             bongo.Setup();
         }
+    }
+
+    private void Update()
+    {
+        if (timer.CheckTimer(spawnRatio))
+        {
+            timer.StopTimer();
+            TriggerBongo(SelectRandomBongo());
+        }
+        timer.TickTimer();
+    }
+
+    private void Setup()
+    {
+        timer = new Timer();
+        bongos = FindObjectsOfType<BongoController>().ToList();
+    }
+
+    private BongoController SelectRandomBongo()
+    {
+        int rngIndex = Random.Range(0, bongos.Count);
+        if (bongos[rngIndex].IsActive)
+        {
+            return SelectRandomBongo();
+        }
+        else
+        {
+            return bongos[rngIndex];
+        }
+    }
+
+    private void TriggerBongo(BongoController bongo)
+    {
+        bongo.ActivateBongo();
     }
 }

@@ -19,7 +19,15 @@ public class BongoController : MonoBehaviour
     [Range (0, 10)]
     private float markerTime;
     private Timer timer;
+    private int currentScoreValue;
     public bool IsActive { get; private set; }
+
+    private void Update()
+    {
+        TickBongo();
+    }
+
+    #region Setup
 
     public void Setup()
     {
@@ -28,16 +36,7 @@ public class BongoController : MonoBehaviour
         bongoInput.Setup();
     }
 
-    private void Update()
-    {
-        TickBongo();
-    }
-
-    public void ActivateBongo()
-    {
-        IsActive = true;
-        bongoData.ChangeColor(IsActive);
-    }
+    #endregion
 
     public void TickBongo()
     {
@@ -46,6 +45,7 @@ public class BongoController : MonoBehaviour
             if (bongoInput.CheckTouches() && timer.GetTimer() != 0f)
             {
                 DeactivateBongo();
+                GameManager.Instance.AddScore(currentScoreValue);
             }
             else if (!timer.CheckTimer(markerTime))
             {
@@ -58,11 +58,18 @@ public class BongoController : MonoBehaviour
         }
     }
 
-    public void DeactivateBongo()
+    public void ActivateBongo()
+    {
+        IsActive = true;
+        bongoData.ChangeColor(IsActive);
+    }
+
+    private void DeactivateBongo()
     {
         IsActive = false;
         bongoData.ChangeColor(IsActive);
         timer.StopTimer();
-        // Assegnazione dei punti
     }
+
+
 }

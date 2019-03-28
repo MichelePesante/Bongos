@@ -22,18 +22,27 @@ public class BongoManager : MonoBehaviour
 
     private void Update()
     {
+        TickBongoSpawn();
+    }
+
+    #region Setup
+
+    private void Setup()
+    {
+        timer = new Timer();
+        bongos = FindObjectsOfType<BongoController>().ToList();
+    }
+
+    #endregion
+
+    public void TickBongoSpawn()
+    {
         if (timer.CheckTimer(spawnRatio))
         {
             timer.StopTimer();
             TriggerBongo(SelectRandomBongo());
         }
         timer.TickTimer();
-    }
-
-    private void Setup()
-    {
-        timer = new Timer();
-        bongos = FindObjectsOfType<BongoController>().ToList();
     }
 
     private BongoController SelectRandomBongo()

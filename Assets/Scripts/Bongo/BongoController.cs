@@ -44,8 +44,9 @@ public class BongoController : MonoBehaviour
         {
             if (bongoInput.CheckTouches() && timer.GetTimer() != 0f)
             {
-                DeactivateBongo();
+                currentScoreValue = bongoData.GetMaxValue(); // Calcolo dello score
                 GameManager.Instance.AddScore(currentScoreValue);
+                DeactivateBongo();
             }
             else if (!timer.CheckTimer(markerTime))
             {

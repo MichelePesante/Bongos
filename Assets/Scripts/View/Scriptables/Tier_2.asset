@@ -16,3 +16,4 @@ MonoBehaviour:
   UnactiveColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   CurrentSprite: {fileID: 21300000, guid: 39b048036df4f23419c0f9e4226cd1dc, type: 3}
   SpawnPercentage: 40
+  BongoMaxValue: 6

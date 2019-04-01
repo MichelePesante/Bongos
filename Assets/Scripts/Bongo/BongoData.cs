@@ -9,6 +9,7 @@ public class BongoData : MonoBehaviour
     private BongoView currentView;
     private SpriteRenderer spriteRenderer;
     private int spawnPercentage;
+    private int bongoMaxValue;
 
     public void Setup()
     {
@@ -16,6 +17,7 @@ public class BongoData : MonoBehaviour
         currentView = ViewManager.Instance.GetView(currentTier);
         spriteRenderer.sprite = currentView.CurrentSprite;
         spawnPercentage = currentView.SpawnPercentage;
+        bongoMaxValue = currentView.BongoMaxValue;
         ChangeColor(false);
     }
 
@@ -39,5 +41,10 @@ public class BongoData : MonoBehaviour
     public int GetSpawnPercentage()
     {
         return spawnPercentage;
+    }
+
+    public int GetMaxValue()
+    {
+        return bongoMaxValue;
     }
 }

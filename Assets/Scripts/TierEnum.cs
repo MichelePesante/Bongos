@@ -1,4 +1,4 @@
-﻿public enum Tier
+﻿public enum TierEnum
 {
     None = 0,
     Tier_1 = 1,

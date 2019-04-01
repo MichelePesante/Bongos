@@ -71,5 +71,13 @@ public class BongoController : MonoBehaviour
         timer.StopTimer();
     }
 
+    public TierEnum GetBongoTier()
+    {
+        return bongoData.GetCurrentTier();
+    }
 
+    public int GetSpawnPercentage()
+    {
+        return bongoData.GetSpawnPercentage();
+    }
 }

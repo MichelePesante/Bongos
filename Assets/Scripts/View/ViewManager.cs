@@ -21,7 +21,7 @@ public class ViewManager : MonoBehaviour
         }
     }
 
-    public BongoView GetView(Tier viewTier)
+    public BongoView GetView(TierEnum viewTier)
     {
         if (viewTier <= 0)
         {

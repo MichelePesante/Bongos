@@ -5,15 +5,17 @@ using UnityEngine;
 public class BongoData : MonoBehaviour
 {
     [SerializeField]
-    private Tier currentTier;
+    private TierEnum currentTier;
     private BongoView currentView;
     private SpriteRenderer spriteRenderer;
+    private int spawnPercentage;
 
     public void Setup()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentView = ViewManager.Instance.GetView(currentTier);
         spriteRenderer.sprite = currentView.CurrentSprite;
+        spawnPercentage = currentView.SpawnPercentage;
         ChangeColor(false);
     }
 
@@ -27,5 +29,15 @@ public class BongoData : MonoBehaviour
         {
             spriteRenderer.color = currentView.UnactiveColor;
         }
+    }
+
+    public TierEnum GetCurrentTier()
+    {
+        return currentTier;
+    }
+
+    public int GetSpawnPercentage()
+    {
+        return spawnPercentage;
     }
 }

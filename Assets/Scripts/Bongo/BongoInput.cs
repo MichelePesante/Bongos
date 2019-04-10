@@ -4,28 +4,29 @@ using UnityEngine;
 
 public class BongoInput : MonoBehaviour
 {
-    private Collider2D collider2D;
+    private Collider2D myCollider2D;
 
-    void Awake()
+    public void Setup()
     {
-        collider2D = GetComponent<Collider2D>();
+        myCollider2D = GetComponent<Collider2D>();
     }
 
-    void Update()
+    public bool CheckTouches()
     {
         if (Input.touchCount > 0)
         {
             for (int i = 0; i < Input.touchCount; i++)
             {
-                if(Input.GetTouch(i).phase == TouchPhase.Began)
+                if (Input.GetTouch(i).phase == TouchPhase.Began)
                 {
                     Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
-                    if (collider2D.OverlapPoint(touchPos))
+                    if (myCollider2D.OverlapPoint(touchPos))
                     {
-                        print("Touch");
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
 }
